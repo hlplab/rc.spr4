@@ -104,7 +104,7 @@ $.widget("ui.RegionedSentence", {
 
         var divNo = 0;
         this.sentDivs = new Array(this.breakpoints.length + 1);
-        this.sentDivs[0] = $(document.createElement("div"));
+        this.sentDivs[0] = $(document.createElement("div")).text("");
         this.mainDiv.append(sentDivs[0]);
 
         this.wordSpans = new Array(this.words.length);
@@ -118,7 +118,7 @@ $.widget("ui.RegionedSentence", {
             this.wsnjq[j] = span[0];
             if ($.inArray(j, this.breakpoints) !== -1) {
                 divNo++;
-                this.sentDivs[divNo] = $(document.createElement("div"));
+                this.sentDivs[divNo] = $(document.createElement("div")).text("");
                 this.mainDiv.append(this.sentDivs[divNo]);
             }
         }
