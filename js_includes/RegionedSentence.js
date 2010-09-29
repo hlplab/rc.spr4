@@ -2,7 +2,7 @@
 
 /* Based on DashedSentence.js
  * This file has been modified to achieve linger-like tagging capabilities
- * (the functionality of the @ symbol has been changed). 
+ * (the functionality of the @ symbol has been changed).
  *
  * Modified: 6/9/2010 by Andrew Wood
  * Modified: 7/21/2010 by Andrew Watts
@@ -102,15 +102,15 @@ $.widget("ui.RegionedSentence", {
         }
         this.previousTime = null;
 
-        this.wordDivs = new Array(this.words.length);
+        this.wordSpans = new Array(this.words.length);
         this.wdnjq = new Array(this.words.length); // 'word divs no jQuery'.
         for (var j = 0; j < this.words.length; ++j) {
-            var div = $(document.createElement("div")).text(this.words[j].replace('_',''));
+            var span = $(document.createElement("span")).text(this.words[j].replace('_',''));
             if (! this.showAhead)
                 div.css('border-color', this.background);
-            this.mainDiv.append(div);
-            this.wordDivs[j] = div;
-            this.wdnjq[j] = div[0];
+            this.mainDiv.append(span);
+            this.wordSpans[j] = span;
+            this.wdnjq[j] = span[0];
             if ($.inArray(j, this.breakpoints) !== -1) {
                 //do clever things to handle multiple lines here
             }
@@ -258,8 +258,8 @@ $.widget("ui.RegionedSentence", {
                 ["Word", csv_url_encode(this.words[i])],
                 ["Tag", csv_url_encode(this.tags[i])], //new column for the tag
                 ["Reading time", this.sprResults[i][0] - this.sprResults[i][1]],
-                ["Newline?", boolToInt(((i+1) < this.wordDivs.length) &&
-                                       (this.wordDivs[i].offsetTop != this.wordDivs[i+1].offsetTop))],
+                ["Newline?", boolToInt(((i+1) < this.wordSpans.length) &&
+                                       (this.wordSpans[i].offsetTop != this.wordSpans[i+1].offsetTop))],
                 ["Sentence (or sentence MD5)", this.sentenceDesc]
             ]);
         }
