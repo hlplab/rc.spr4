@@ -86,9 +86,9 @@ $.widget("ui.RegionedSentence", {
         }
         else {
             if (typeof(this.options.s) == "string")
-		        this.sentenceDesc = csv_url_encode(this.options.s);
-	        else
-		        this.sentenceDesc = csv_url_encode(this.options.s.join(' '));
+                this.sentenceDesc = csv_url_encode(this.options.s);
+            else
+                this.sentenceDesc = csv_url_encode(this.options.s.join(' '));
         }
 
         this.mainDiv.addClass(this.cssPrefix + "sentence");
@@ -102,17 +102,24 @@ $.widget("ui.RegionedSentence", {
         }
         this.previousTime = null;
 
+        var divNo = 0;
+        this.sentDivs = new Array(this.breakpoints.length + 1);
+        this.sentDivs[0] = $(document.createElement("div"));
+        this.mainDiv.append(sentDivs[0]);
+
         this.wordSpans = new Array(this.words.length);
-        this.wdnjq = new Array(this.words.length); // 'word divs no jQuery'.
+        this.wsnjq = new Array(this.words.length); // 'word spans no jQuery'.
         for (var j = 0; j < this.words.length; ++j) {
             var span = $(document.createElement("span")).text(this.words[j].replace('_',''));
             if (! this.showAhead)
                 div.css('border-color', this.background);
-            this.mainDiv.append(span);
+            this.sentDivs[divNo].append(span);
             this.wordSpans[j] = span;
-            this.wdnjq[j] = span[0];
+            this.wsnjq[j] = span[0];
             if ($.inArray(j, this.breakpoints) !== -1) {
-                //do clever things to handle multiple lines here
+                divNo++;
+                this.sentDivs[divNo] = $(document.createElement("div"));
+                this.mainDiv.append(this.sentDivs[divNo]);
             }
         }
 
@@ -227,17 +234,17 @@ $.widget("ui.RegionedSentence", {
     // NOTE: [0] subscript gets DOM object from JQuery selector.
     blankWord: function(w) {
         if (this.currentWord <= this.stoppingPoint) {
-            this.wdnjq[w].style.borderColor = this.unshownBorderColor;
-            this.wdnjq[w].style.color = this.unshownWordColor;
+            this.wsnjq[w].style.borderColor = this.unshownBorderColor;
+            this.wsnjq[w].style.color = this.unshownWordColor;
             if (! this.showBehind)
-                this.wdnjq[w].style.borderColor = this.background;
+                this.wsnjq[w].style.borderColor = this.background;
         }
     },
     showWord: function(w) {
         if (this.currentWord < this.stoppingPoint) {
             if (this.showAhead || this.showBehind)
-                this.wdnjq[w].style.borderColor = this.shownBorderColor;
-            this.wdnjq[w].style.color = this.shownWordColor;
+                this.wsnjq[w].style.borderColor = this.shownBorderColor;
+            this.wsnjq[w].style.color = this.shownWordColor;
         }
     },
 
