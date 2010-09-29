@@ -8,7 +8,7 @@
 .rating {
     padding-left: 0.6em;
 }
-.sentence span {
+.subsentence span {
      background-color: white;
      border-bottom: 1px solid;
      color: white;
@@ -18,7 +18,7 @@
      margin-bottom: 2em;
 }
 .practice-text {
-    color: blue; 
+    color: blue;
     font-weight: bold;
 }
 .iphone-next {

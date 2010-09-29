@@ -106,6 +106,7 @@ $.widget("ui.RegionedSentence", {
         this.sentDivs = new Array(this.breakpoints.length + 1);
         this.sentDivs[0] = $(document.createElement("div")).text("");
         this.mainDiv.append(sentDivs[0]);
+        this.sentDivs[0].addClass(this.cssPrefix + "subsentence");
 
         this.wordSpans = new Array(this.words.length);
         this.wsnjq = new Array(this.words.length); // 'word spans no jQuery'.
@@ -120,6 +121,7 @@ $.widget("ui.RegionedSentence", {
                 divNo++;
                 this.sentDivs[divNo] = $(document.createElement("div")).text("");
                 this.mainDiv.append(this.sentDivs[divNo]);
+                this.sentDivs[0].addClass(this.cssPrefix + "subsentence");
             }
         }
 
