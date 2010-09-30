@@ -15,6 +15,7 @@ $.widget("ui.RegionedSentence", {
         this.cssPrefix = this.options._cssPrefix;
         this.utils = this.options._utils;
         this.finishedCallback = this.options._finishedCallback;
+        this.breakpoints = new Array();
 
         if (typeof(this.options.s) == "string") {
             this.words = this.options.s.split(/\s+/);
@@ -91,7 +92,7 @@ $.widget("ui.RegionedSentence", {
                 this.sentenceDesc = csv_url_encode(this.options.s.join(' '));
         }
 
-        this.mainDiv.addClass(this.cssPrefix + "sentence");
+        //this.mainDiv.addClass(this.cssPrefix + "sentence");
 
         this.resultsLines = [];
         if (this.mode == "self-paced reading") {
@@ -105,8 +106,8 @@ $.widget("ui.RegionedSentence", {
         var divNo = 0;
         this.sentDivs = new Array(this.breakpoints.length + 1);
         this.sentDivs[0] = $(document.createElement("div")).text("");
-        //this.mainDiv.append(sentDivs[0]);
-        this.sentDivs[0].addClass(this.cssPrefix + "subsentence");
+        this.mainDiv.append(this.sentDivs[0]);
+        this.sentDivs[0].addClass(this.cssPrefix + "sentence");
 
         this.wordSpans = new Array(this.words.length);
         this.wsnjq = new Array(this.words.length); // 'word spans no jQuery'.
@@ -114,15 +115,15 @@ $.widget("ui.RegionedSentence", {
             var span = $(document.createElement("span")).text(this.words[j].replace('_',''));
             if (! this.showAhead)
                 span.css('border-color', this.background);
-            this.mainDiv.append(span);
-            //this.sentDivs[divNo].append(span);
+            this.sentDivs[divNo].append(span);
+            //this.mainDiv.append(span);
             this.wordSpans[j] = span;
             this.wsnjq[j] = span[0];
             if ($.inArray(j, this.breakpoints) !== -1) {
                 divNo++;
                 this.sentDivs[divNo] = $(document.createElement("div")).text("");
-                //this.mainDiv.append(this.sentDivs[divNo]);
-                this.sentDivs[0].addClass(this.cssPrefix + "subsentence");
+                this.mainDiv.append(this.sentDivs[divNo]);
+                this.sentDivs[divNo].addClass(this.cssPrefix + "sentence");
             }
         }
 
