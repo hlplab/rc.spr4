@@ -271,14 +271,15 @@ $.widget("ui.RegionedSentence", {
                 ["Reading time", this.sprResults[i][0] - this.sprResults[i][1]],
                 ["Newline?", boolToInt(((i+1) < this.wordSpans.length) &&
                                        (this.wordSpans[i].offsetTop != this.wordSpans[i+1].offsetTop))],
-                ["Sentence (or sentence MD5)", this.sentenceDesc]
+                ["Sentence (or sentence MD5)", this.sentenceDesc],
+                ["ItemID", this.options.id]
             ]);
         }
     }
 });
 
 ibex_controller_set_properties("RegionedSentence", {
-    obligatory: ["s"],
+    obligatory: ["s", "id"],
     htmlDescription: function (opts) {
         return $(document.createElement("div")).text(opts.s);
     }
