@@ -86,13 +86,14 @@ $.widget("ui.RegionedSentence", {
             this.sentenceDesc = hex_md5(canonicalSentence);
         }
         else {
-            if (typeof(this.options.s) == "string")
+            if (typeof(this.options.s) == "string") {
                 this.sentenceDesc = csv_url_encode(this.options.s);
-            else
+            } else if ($.isArray(this.options.s)) {
+                this.sentenceDesc = csv_url_encode(this.words.join(' '));
+            } else {
                 this.sentenceDesc = csv_url_encode(this.options.s.join(' '));
+            }
         }
-
-        //this.mainDiv.addClass(this.cssPrefix + "sentence");
 
         this.resultsLines = [];
         if (this.mode == "self-paced reading") {
@@ -116,7 +117,6 @@ $.widget("ui.RegionedSentence", {
             if (! this.showAhead)
                 span.css('border-color', this.background);
             this.sentDivs[divNo].append(span);
-            //this.mainDiv.append(span);
             this.wordSpans[j] = span;
             this.wsnjq[j] = span[0];
             if ($.inArray(j, this.breakpoints) !== -1) {
