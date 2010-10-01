@@ -21,7 +21,7 @@ var defaults = [
 var items = [
     ["sr", "__SendResults__", { }],
     ["sep", "Separator", {}],
-    ["intro", "Message", {consentRequired: true, html: {include: "intro.html"}}],
+    ["intro", "Message", {consentRequired: false, html: {include: "intro.html"}}],
     ["info", "Form", {html: {include: "info.html"}}],
     ["startprac", "Message", {consentRequired: false, html: {include: "start_practice.html"}}],
     [["practice",1], ds, {s: ["S1:_She's smart at what she does.","She knows how to do that.","S2:_She knows how to twist this around."], id:"F.31.SBAR"}],
