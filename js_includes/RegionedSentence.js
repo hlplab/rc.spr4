@@ -124,6 +124,7 @@ $.widget("ui.RegionedSentence", {
                 this.sentDivs[divNo] = $(document.createElement("div")).text("");
                 this.mainDiv.append(this.sentDivs[divNo]);
                 this.sentDivs[divNo].addClass(this.cssPrefix + "sentence");
+                this.sentDivs[divNo].disableTextSelect();
             }
         }
 
