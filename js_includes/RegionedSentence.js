@@ -109,6 +109,7 @@ $.widget("ui.RegionedSentence", {
         this.sentDivs[0] = $(document.createElement("div")).text("");
         this.mainDiv.append(this.sentDivs[0]);
         this.sentDivs[0].addClass(this.cssPrefix + "sentence");
+        this.sentDivs[0].disableTextSelect();
 
         this.wordSpans = new Array(this.words.length);
         this.wsnjq = new Array(this.words.length); // 'word spans no jQuery'.
