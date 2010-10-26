@@ -143,6 +143,6 @@ var items = [
     [["StimZero.OriginalThat",[88,0]], ds, {s: ["S1:_I don't really bother with the Washington station because I just, it's so far removed from what I'm interested in.", "S2:_And the rates@NPHEAD1 we@RCSUBJ1 keep@RCVERB1 paying@RCVERB2 seem to keep increasing, you know."], id: "28" }, qs, {q: "Do the rates keep going up?", hasCorrect: "Yes", randomOrder: false}],
     [["StimThat.OriginalThat",[88,0]], ds, {s: ["S1:_I don't really bother with the Washington station because I just, it's so far removed from what I'm interested in.", "S2:_And the rates@NPHEAD1 that@COMPL we@RCSUBJ1 keep@RCVERB1 paying@RCVERB2 seem to keep increasing, you know."], id: "28" }, qs, {q: "Do the rates keep going up?", hasCorrect: "Yes", randomOrder: false}],
     ["contact", "Message", {consentRequired: false, html: {include: "contacts.html"}}],
-    ["code", "Message", {consentRequired: false, html: {include: "code.html"}}]
+    ["code", "Form", {consentRequired: false, continueMessage:'This is the final page. You do not need to click to continue.', html: {include: "code.html"}}]
 ];
 
