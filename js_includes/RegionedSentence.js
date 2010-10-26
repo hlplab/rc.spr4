@@ -66,6 +66,11 @@ $.widget("ui.RegionedSentence", {
         this.mainDiv = $("<div>");
         this.element.append(this.mainDiv);
 
+        // seems to be the only way to stop highlighting in IE
+        // if you do it at the level of this.element or a sentence
+        // div, you can highlight be starting the select outside
+        $('body').disableTextSelect();
+
         this.background = this.element.css('background-color') || "white";
         this.isIE7;
         /*@cc_on this.isIE = true; @*/
@@ -109,12 +114,11 @@ $.widget("ui.RegionedSentence", {
         this.sentDivs[0] = $(document.createElement("div")).text("");
         this.mainDiv.append(this.sentDivs[0]);
         this.sentDivs[0].addClass(this.cssPrefix + "sentence");
-        this.sentDivs[0].disableTextSelect();
 
         this.wordSpans = new Array(this.words.length);
         this.wsnjq = new Array(this.words.length); // 'word spans no jQuery'.
         for (var j = 0; j < this.words.length; ++j) {
-            var span = $(document.createElement("span")).text(this.words[j].replace('_',''));
+            var span = $(document.createElement("span")).text(this.words[j].replace('_',' '));
             if (! this.showAhead)
                 span.css('border-color', this.background);
             this.sentDivs[divNo].append(span);
@@ -125,7 +129,6 @@ $.widget("ui.RegionedSentence", {
                 this.sentDivs[divNo] = $(document.createElement("div")).text("");
                 this.mainDiv.append(this.sentDivs[divNo]);
                 this.sentDivs[divNo].addClass(this.cssPrefix + "sentence");
-                this.sentDivs[divNo].disableTextSelect();
             }
         }
 
